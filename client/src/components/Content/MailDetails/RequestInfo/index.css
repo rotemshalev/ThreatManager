@@ -1,0 +1,28 @@
+.request-info {
+  font-size: 13px;
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+.request-info-title {
+  color: #00008a;
+}
+
+.request-info-keys {
+  display: inline-block;
+  list-style-type: none;
+  color: grey;
+  padding: 0;
+  margin-right: 120px;
+}
+
+.request-info li {
+  margin-bottom: 10px;
+}
+
+.request-info-values {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0;
+}

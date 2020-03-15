@@ -1,0 +1,31 @@
+.side-menu {
+  width: 13%;
+  height: 100%;
+  padding: 5px;
+  display: inline-block;
+  border-right: 2px solid #e0e0e0;
+}
+
+.req-types-list {
+  list-style: none;
+  padding: 5% 0 0 0;
+  font-size: 15px;
+}
+
+.req-types-list > li {
+  height: 30px;
+  display: flex;
+  padding-left: 8%;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.req-types-list > li:hover {
+  background-color: #c4c4ff;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

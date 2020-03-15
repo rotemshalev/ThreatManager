@@ -1,0 +1,28 @@
+.email-info {
+  font-size: 13px;
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+}
+
+.email-info-title {
+  color: #00008a;
+}
+
+.email-info-keys {
+  display: inline-block;
+  list-style-type: none;
+  color: grey;
+  padding: 0;
+  margin-right: 120px;
+}
+
+.email-info li {
+  margin-bottom: 10px;
+}
+
+.email-info-values {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0;
+}

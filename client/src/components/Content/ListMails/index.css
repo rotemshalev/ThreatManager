@@ -1,0 +1,25 @@
+.list-mails-container {
+  height: 55%;
+  background-color: white;
+  overflow-y: scroll;
+  border: 2px solid #e0e0e0;
+}
+
+.list-mails {
+  width: 100%;
+  background-color: white;
+}
+
+.list-mails td {
+  min-width: 40px;
+  padding: 0 0 0 1%;
+  font-size: 13px;
+}
+
+.list-mails tr {
+  height: 30px;
+}
+
+.list-mails input[type="checkbox"] {
+  cursor: pointer;
+}
