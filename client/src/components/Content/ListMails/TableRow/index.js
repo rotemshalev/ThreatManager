@@ -35,7 +35,7 @@ class TableRow extends React.Component {
     return (
       <tr className="table-row" onClick={this.handleMailClicked}>
         <td>
-          <input type="checkbox" onChange={this.handleMailClicked} checked={selected} value={mail} />
+          <input type="checkbox" onClick={this.handleMailClicked} onChange={this.handleMailClicked} checked={selected} value={mail} />
         </td>
         {delete mail["Mail Status"] && Object.values(mail).map((val, index) => <td key={index}>{val}</td>)}
       </tr>
