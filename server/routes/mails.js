@@ -26,17 +26,19 @@ module.exports = (db) => {
         maxJumps = maxJumps.length;
       }
       if (stoppedOnIndex + jumps <= maxJumps) {
+        let docs = await db.collection("mails").find().project({'_id': false}).limit(jumps).skip(stoppedOnIndex).toArray();
         stoppedOnIndex += jumps;
+        return res.send(docs)
       }
       else if (stoppedOnIndex < maxJumps) {
         jumps = maxJumps - stoppedOnIndex;
+        let docs = await db.collection("mails").find().project({'_id': false}).limit(jumps).skip(stoppedOnIndex).toArray();
         stoppedOnIndex = maxJumps;
+        return res.send(docs)
       }
       else {
         return res.send([])
       }
-      let docs = await db.collection("mails").find().project({'_id': false}).limit(jumps).skip(stoppedOnIndex).toArray();
-      res.send(docs);
     }
     catch (e) {
       console.log(e);
