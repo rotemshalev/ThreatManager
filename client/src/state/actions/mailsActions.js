@@ -30,10 +30,10 @@ export const changeMailsStatusSuccess = (mails, status) => {
   return { type: types.CHANGE_MAILS_STATUS_SUCCESS, payload: { mails, status } }
 }
 
-export function fetchAllMails() {
+export function fetchMails(mailsType) {
   return async (dispatch) => {
     try {
-      let response = await axios.get('http://localhost:5000/api/mails');
+      let response = await axios.get(`http://localhost:5000/api/${mailsType}`);
       dispatch(fetchMailsSuccess(response.data));
     }
     catch (e) {
@@ -42,23 +42,11 @@ export function fetchAllMails() {
   }
 }
 
-export function fetchAllMailsFurther() {
+export function fetchMailsFurther(mailsType) {
   return async (dispatch) => {
     try {
-      let response = await axios.get('http://localhost:5000/api/mails/further');
+      let response = await axios.get(`http://localhost:5000/api/${mailsType}/further`);
       dispatch(fetchMailsFurtherSuccess(response.data));
-    }
-    catch (e) {
-      dispatch(fetchFailure(e));
-    }
-  }
-}
-
-export function fetchReleaseRequests() {
-  return async (dispatch) => {
-    try {
-      let response = await axios.get('http://localhost:5000/api/releaseRequests');
-      dispatch(fetchMailsSuccess(response.data));
     }
     catch (e) {
       dispatch(fetchFailure(e));

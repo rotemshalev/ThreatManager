@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 
-import { deleteMails, changeMailsStatus, fetchReleaseRequests, fetchAllMails, clearSelectedMails } from "../../../state/actions/mailsActions";
+import { deleteMails, changeMailsStatus, fetchMails, fetchMailsFurther, clearSelectedMails } from "../../../state/actions/mailsActions";
 import { changeSearch } from "../../../state/actions/searchAction";
 import ClearIcon from '@material-ui/icons/Clear';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
@@ -46,12 +46,8 @@ class Header extends React.Component {
   }
 
   handleRefreshClick = () => {
-    if (window.location.pathname === "/ReleaseRequests") {
-      this.props.fetchReleaseRequests()
-    }
-    else {
-      this.props.fetchAllMails()
-    }
+    let mailsType = window.location.pathname === "/ReleaseRequests" ? "releaseRequests" : "mails";
+    this.props.fetchMails(mailsType);
   }
   
   componentDidMount() {
@@ -96,9 +92,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   deleteMails: (selectedMails) => dispatch(deleteMails(selectedMails)),
   changeMailsStatus: (selectedMails, status) => dispatch(changeMailsStatus(selectedMails, status)),
+  fetchMails: (mailsType) => dispatch(fetchMails(mailsType)),
+  fetchMailsFurther: (mailsType) => dispatch(fetchMailsFurther(mailsType)),
   changeSearch: (search) => dispatch(changeSearch(search)),
-  fetchReleaseRequests: () => dispatch(fetchReleaseRequests()),
-  fetchAllMails: () => dispatch(fetchAllMails()),
   clearSelectedMails: () => dispatch(clearSelectedMails())
 })
 

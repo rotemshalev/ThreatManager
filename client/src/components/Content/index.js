@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 
-import { fetchAllMails, fetchReleaseRequests, clearSelectedMails } from "../../state/actions/mailsActions";
+import { fetchMails, clearSelectedMails } from "../../state/actions/mailsActions";
 import Header from './Header';
 import MailDetails from './MailDetails';
 import ListMails from './ListMails';
@@ -16,8 +16,10 @@ class Content extends React.Component {
   }
 
   componentDidMount() {
+    let mailsType;
     this.props.history.listen(() => {
-      window.location.pathname !== "/AllQuarantinedEmails" ? this.props.fetchReleaseRequests() : this.props.fetchAllMails();
+      mailsType = window.location.pathname === "/ReleaseRequests" ? "releaseRequests" : "mails";
+      this.props.fetchMails(mailsType);
       this.props.clearSelectedMails()
     });
   }
@@ -41,8 +43,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchAllMails: () => dispatch(fetchAllMails()),
-  fetchReleaseRequests: () => dispatch(fetchReleaseRequests()),
+  fetchMails: (mailsType) => dispatch(fetchMails(mailsType)),
   clearSelectedMails: () => dispatch(clearSelectedMails())
 })
 

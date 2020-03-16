@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 
-import { fetchAllMailsFurther } from "../../../state/actions/mailsActions";
+import { fetchMailsFurther } from "../../../state/actions/mailsActions";
 import TableTitles from './TableTitles'
 import TableRow from './TableRow'
 import './index.css';
@@ -15,9 +15,7 @@ class ListMails extends Component {
 
   scroll = (e) => {
     var event = window.event ? window.event : e;
-    console.log(event.keyCode);
     if (event.keyCode === 38 || event.keyCode === 40) {
-      console.log("asd")
       document.getElementById("list-mails-container").focus();
     }
   }
@@ -43,9 +41,10 @@ class ListMails extends Component {
   }
 
   trackScrolling = () => {
+    let mailsType = window.location.pathname === "/ReleaseRequests" ? "releaseRequests" : "mails";
     let mailsEl = document.getElementsByClassName("list-mails-container")[0];
     if (mailsEl.scrollHeight - mailsEl.scrollTop - mailsEl.clientHeight < 1) {
-      this.props.fetchAllMailsFurther()
+      this.props.fetchMailsFurther(mailsType)
     }
   }
 
@@ -69,7 +68,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchAllMailsFurther: () => dispatch(fetchAllMailsFurther()),
+  fetchMailsFurther: (mailsType) => dispatch(fetchMailsFurther(mailsType))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ListMails));
