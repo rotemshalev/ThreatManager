@@ -13,19 +13,32 @@ class ListMails extends Component {
     this.state = {};
   }
 
+  scroll = (e) => {
+    var event = window.event ? window.event : e;
+    console.log(event.keyCode);
+    if (event.keyCode === 38 || event.keyCode === 40) {
+      console.log("asd")
+      document.getElementById("list-mails-container").focus();
+    }
+  }
+
+  componentDidMount = () => {
+    document.addEventListener('keydown', this.scroll, false);
+  }
+
   tableRows = () => {
     if (this.props.location.pathname === "/ReleaseRequests") {
       return this.props.mails
       .filter(mail => (mail["Mail Status"] === this.props.status) || this.props.status === "All Requests")
       .filter(mail => mail["Subject"].toLowerCase().startsWith(this.props.search.toLowerCase()))
       .map((mail, index) => {
-        return <TableRow key={index} mail={mail} />;
+        return <TableRow refs={this.refs} key={index} mail={mail} />;
       })
     }
     return this.props.mails
     .filter(mail => mail["Subject"].toLowerCase().startsWith(this.props.search.toLowerCase()))
     .map((mail, index) => {
-      return <TableRow key={index} mail={mail} />;
+      return <TableRow refs={this.refs} key={index} mail={mail} />;
     })
   }
 
@@ -38,7 +51,7 @@ class ListMails extends Component {
 
   render() {
     return (
-      <div className="list-mails-container" onScroll={this.trackScrolling}>
+      <div className="list-mails-container" id="list-mails-container" tabindex="0" onScroll={this.trackScrolling}>
         <table className="list-mails" cellSpacing="1">
           <tbody>
             <TableTitles />
